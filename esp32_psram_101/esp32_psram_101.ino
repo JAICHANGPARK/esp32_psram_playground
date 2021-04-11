@@ -83,7 +83,7 @@ void setup() {
   free(int_array); //The allocated memory is freed.
   logMemory();
 
-  
+
   //Create an array of n_elements
   int available_PSRAM_size = ESP.getFreePsram();
   Serial.println((String)"PSRAM Size available (bytes): " + available_PSRAM_size);
@@ -100,6 +100,32 @@ void setup() {
   //Delete array
   free(array_int); //The allocated memory is freed.
   Serial.println((String)"PSRAM Size available (bytes): " + ESP.getFreePsram());
+
+  delay(1000);
+  Serial.println("Create an array of 20000 integers");
+  //Create an array of 20000 integers
+  
+  n_elements = 2000000;
+  uint8_t *uint8_array = (uint8_t *) ps_calloc(n_elements, sizeof(uint8_t));
+  //We access array values like a classic array
+  uint8_t v = 0;
+  for (int i = 0; i < n_elements; i++) {
+    uint8_array[i] = v++;
+  }
+  Serial.println("dump arrays");
+  for (int i = 0; i < n_elements; i++) {
+    if (i % 500000 == 0) {
+      Serial.print(i);
+      Serial.print("->");
+      Serial.println(uint8_array[i]);
+    }
+  }
+  Serial.println("Done");
+  log_d("int_array Total PSRAM: %d", ESP.getPsramSize());
+  log_d("int_array Free PSRAM: %d", ESP.getFreePsram());
+  logMemory();
+  free(int_array); //The allocated memory is freed.
+  logMemory();
 
 }
 
