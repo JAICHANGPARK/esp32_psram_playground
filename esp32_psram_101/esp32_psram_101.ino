@@ -105,7 +105,7 @@ void setup() {
   Serial.println("Create an array of 20000 integers");
   //Create an array of 20000 integers
   
-  n_elements = 2000000;
+  n_elements = 4000000;
   uint8_t *uint8_array = (uint8_t *) ps_calloc(n_elements, sizeof(uint8_t));
   //We access array values like a classic array
   uint8_t v = 0;
