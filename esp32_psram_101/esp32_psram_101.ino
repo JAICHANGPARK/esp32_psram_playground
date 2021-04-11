@@ -70,13 +70,15 @@ void setup() {
   int_array[999] = 42;
   Serial.println("dump arrays");
   for (int i = 0; i < n_elements; i++) {
-    Serial.print(i);
-    Serial.print("->");
-    Serial.println(int_array[i]);
+    if (i % 10 == 0) {
+      Serial.print(i);
+      Serial.print("->");
+      Serial.println(int_array[i]);
+    }
   }
   Serial.println("Done");
-  log_d("var_float Total PSRAM: %d", ESP.getPsramSize());
-  log_d("var_float Free PSRAM: %d", ESP.getFreePsram());
+  log_d("int_array Total PSRAM: %d", ESP.getPsramSize());
+  log_d("int_array Free PSRAM: %d", ESP.getFreePsram());
   logMemory();
   free(var_float); //The allocated memory is freed.
   logMemory();
