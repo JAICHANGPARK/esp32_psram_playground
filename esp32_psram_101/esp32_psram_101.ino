@@ -80,8 +80,10 @@ void setup() {
   log_d("int_array Total PSRAM: %d", ESP.getPsramSize());
   log_d("int_array Free PSRAM: %d", ESP.getFreePsram());
   logMemory();
-  free(var_float); //The allocated memory is freed.
+  free(int_array); //The allocated memory is freed.
   logMemory();
+
+  
   //Create an array of n_elements
   int available_PSRAM_size = ESP.getFreePsram();
   Serial.println((String)"PSRAM Size available (bytes): " + available_PSRAM_size);
